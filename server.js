@@ -11,7 +11,11 @@ var fs = require('fs'),
 
 
 console.log(__dirname);
+process.chdir(__dirname);
 
+if (!fs.existsSync("./texts")){
+    fs.mkdirSync("./texts");
+}
 //---------------------------------------http support---------------------------------------//
 
 var supporthttp = function() {

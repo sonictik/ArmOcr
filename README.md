@@ -22,5 +22,5 @@ $ sudo apt-get install tesseract-ocr-grc
 ## Running
 Run the server with
 ```bash
-$ node ArmOcr/server/server.js
+$ node ArmOcr/server.js
 ```
