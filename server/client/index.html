@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Armenian text recognizer</title>
+
+
+    <!-- Loading Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    
+    
+	<script src="/socket.io/socket.io.js"></script>
+    <script src="socket.io-file-client.js"></script> 
+
+
+
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div class = "container">
+        <h1 class = "text-center text-primary">Armenian text recognizer</h1>
+
+        <div class = "form-group">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form id = "uploadForm">
+                        <h3> Upload an image </h3>
+                        <div class="form-group">
+                            <label for="exampleInputFile">File input</label>
+                            <input type="file" name="filetoupload" id="imageFile" accept="image/*">
+                            <p class="help-block">Upload your image containing Armenian text</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+                <div class="col-lg-6">
+                    <h3> Or input the URL </h3>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id = "imgUrl">
+                            <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" onclick="procURL()">Go!</button>
+                                  </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    <div id = "imgInfo" class = "form-group hidden" style="padding-bottom: 50px;">
+        
+        <div class = "row">
+            <div class = "col-lg-6">
+                <p> <img src="example-image.jpg" id = "armImg" alt="received-image" class="img-rounded img-responsive"> </p>
+            </div>
+            <div class = "col-lg-6">
+                <pre id = "finalText" style="font-size: 14pt;white-space: pre-wrap; word-break: keep-all;">a</pre>
+                
+                <div class = "col-lg-6">
+                    <div class="btn-group">
+                        <button class="btn btn-info" type="button" onclick="translateText(true)">Translate</button>
+                        <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">
+                          <span class="caret"></span>
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul role="menu" class="dropdown-menu">
+                            <li>
+                                <a onclick="translateText(false)" style="cursor: pointer;">Translate saving format </a>
+                            </li>
+                        </ul>
+                      </div>
+                </div>
+                
+                <div class = "col-lg-6">
+                    <select id = "toLanguage" data-toggle="select" name="searchfield" class="form-control select select-success mrs">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <p style = "padding-top: 10px;">
+            <textarea id = "recognizedText" class="form-control" rows="5" style="font-size: 12pt"></textarea>
+        </p>
+
+        <p>
+            <button type="button" class="btn btn-primary" onclick="save_text()">Save</button>
+        </p>
+
+        
+    </div>
+
+    <script src="js/octopus.js"></script>
+	<script src="/js/client.js"></script>
+    <script src="js/translate.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/flat-ui.min.js"></script>
+    <script src="js/application.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/typeahead.bundle.min.js"></script>
+    <script src="js/functionality.js"></script>
+
+</body>
+</html>
