@@ -89,7 +89,7 @@ var start_server = function() {
     });
     addRoutes(app, __dirname);
     
-    Promise.all([makeDir("./texts"), makeDir("./pics")])
+    Promise.all([makeDir(__dirname + "/texts"), makeDir(__dirname + "/pics")])
         .then(function(){
             serv_init();
         }, function(err){
