@@ -9,6 +9,8 @@ var app = require('express')(),
         makeDir = fileManagement.makeFolder,
         io;
 
+
+process.chdir(__dirname);
 //---------------------------------------Client---------------------------------------//
 var users_n = 0;
 function serv_init() {
@@ -89,7 +91,7 @@ var start_server = function() {
     });
     addRoutes(app, __dirname);
     
-    Promise.all([makeDir(__dirname + "/texts"), makeDir(__dirname + "/pics")])
+    Promise.all([makeDir("./texts"), makeDir("./pics")])
         .then(function(){
             serv_init();
         }, function(err){
