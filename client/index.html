@@ -51,7 +51,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control" id = "imgUrl">
                             <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button" onclick="procURL()">Go!</button>
+                                    <button class="btn btn-default" type="button" onclick="oct.processURL()">Go!</button>
                                   </span>
                         </div>
                     </div>
@@ -72,14 +72,14 @@
                 
                 <div class = "col-lg-6">
                     <div class="btn-group">
-                        <button class="btn btn-info" type="button" onclick="translateText(true)">Translate</button>
+                        <button class="btn btn-info" type="button" onclick="oct.translateText(true)">Translate</button>
                         <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">
                           <span class="caret"></span>
                           <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <ul role="menu" class="dropdown-menu">
                             <li>
-                                <a onclick="translateText(false)" style="cursor: pointer;">Translate saving format </a>
+                                <a onclick="oct.translateText(false)" style="cursor: pointer;">Translate saving format </a>
                             </li>
                         </ul>
                       </div>
@@ -96,15 +96,16 @@
         </p>
 
         <p>
-            <button type="button" class="btn btn-primary" onclick="save_text()">Save</button>
+            <button type="button" class="btn btn-primary" onclick="oct.saveText()">Save</button>
         </p>
 
         
     </div>
 
+	<script src="js/client.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/view.js"></script>
     <script src="js/octopus.js"></script>
-	<script src="/js/client.js"></script>
-    <script src="js/translate.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/flat-ui.min.js"></script>
     <script src="js/application.js"></script>

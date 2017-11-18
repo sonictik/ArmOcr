@@ -1,72 +1,79 @@
-
-var urlG = "";
-var finText = "";
-var lastSaved = "";
-
-var procURL = function()
-{
-
-    var url = document.getElementById("imgUrl").value;
-    urlG = url;
-    document.getElementById("armImg").src = url;
-
-    requestRecognitionByUrl(url);
+var Octopus = function() {
+    this.client = new Client(this.makeClientApi());
     
-    clearInfo();
-};
-
-
-var form = document.getElementById('uploadForm');
-var changeSrcLocal = function()
-{
-    var input = document.getElementById('imageFile');
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            document.getElementById("armImg").src = e.target.result;
-        };
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-form.onsubmit = function(ev) {
-    ev.preventDefault();
+    this.data = new Data();
+    this.view = new View();
     
-    var fileEl = document.getElementById('imageFile');
-    var uploadIds = uploader.upload(fileEl);
+    this.initFileUpload();
+};
+
+Octopus.prototype.makeClientApi = function() {
+    var me = this;
     
-    changeSrcLocal();
-    // setTimeout(function() { 
-        // uploader.abort(uploadIds[0]); 
-        // console.log(uploader.getUploadInfo()); 
-    // }, 1000); 
+    var receivedTranslation = function(translation){
+        me.data.setFinalText(translation);
+        me.view.setFinalText(translation);
+    };
+    
+    var receivedRecognizedText = function(recognizedText){
+        me.view.setRecognizedText(recognizedText);
+        me.saveText();
+        me.view.reveal();
+    };
+    
+    var clientApi = {
+        "receivedTranslation": receivedTranslation,
+        "receivedRecognizedText": receivedRecognizedText
+    };
+    return clientApi;
 };
 
 
-var clearInfo = function()
-{
-    document.getElementById("recognizedText").value = "";
-    save_text();
+Octopus.prototype.processURL = function() {
+    var url = this.view.getImgURL();
+    this.view.setImage(url);
+    
+    this.client.requestRecognitionByUrl(url);
+    
+    this.clearInfo();
 };
 
-var receivedTranslation = function(translation)
-{
-    finText = translation;
-    document.getElementById("finalText").innerHTML = finText;
-}
 
-var receivedRecognizedText = function(recognizedText)
-{
-    document.getElementById("recognizedText").value = recognizedText;
-    save_text();
-    document.getElementById("imgInfo").classList.remove('hidden');
-}
-
-var save_text = function()
-{
-    finText = document.getElementById("recognizedText").value;
-    lastSaved = finText;
-    document.getElementById("finalText").innerHTML = finText;
+Octopus.prototype.initFileUpload = function() {
+    var form = document.getElementById('uploadForm');
+    var client = this.client;
+    var view = this.view;
+    
+    form.onsubmit = function(ev) {
+        ev.preventDefault();
+        
+        var fileEl = document.getElementById('imageFile');
+        client.upload(fileEl);
+        
+        view.changeSrcLocal();
+    };
 };
+
+
+Octopus.prototype.clearInfo = function() {
+    this.view.setRecognizedText("");
+    this.saveText();
+};
+
+
+Octopus.prototype.saveText = function()
+{
+    var text = this.view.getRecognizedText();
+    this.data.setFinalText(text);
+    this.data.setLastSaved(text);
+    this.view.setFinalText(text);
+};
+
+Octopus.prototype.translateText = function(removeEndlines)
+{
+    var text = this.data.getLastSaved();
+    var toLang = this.view.getToLang();
+    this.client.requestTranslation(text, toLang, removeEndlines);
+};
+
+var oct = new Octopus();
