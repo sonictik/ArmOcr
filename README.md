@@ -1,6 +1,6 @@
 # ArmOcr
 
-ArmOcr is a simple web application based on node.js, that helps to tranform images of typed and printed Armenian text into editable and searchable machine text.
+ArmOcr is a simple web application based on Node.js, that helps to tranform images of typed and printed Armenian text into editable and searchable machine text.
 
 <img src="https://sonictik.github.io/images/ArmOcr.jpg">
 
