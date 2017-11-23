@@ -9,6 +9,8 @@ Clone the repository with
 
 ```bash
 $ git clone https://github.com/sonictik/ArmOcr.git
+$ cd ArmOcr
+$ npm install
 ```
 
 
@@ -26,5 +28,5 @@ $ sudo apt-get install tesseract-ocr-grc
 ## Running
 Run the server with
 ```bash
-$ node ArmOcr/server.js
+$ node server.js
 ```
