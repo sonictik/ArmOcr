@@ -9,10 +9,14 @@ Clone the repository with
 
 ```bash
 $ git clone https://github.com/sonictik/ArmOcr.git
+```
+
+And install the dependencies
+```bash
 $ cd ArmOcr
 $ npm install
 ```
-
+---
 
 You need to have tesseract-ocr 4.0+
 https://launchpad.net/~alex-p/+archive/ubuntu/tesseract-ocr
