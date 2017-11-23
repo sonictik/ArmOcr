@@ -1,0 +1,30 @@
+{
+  "name": "arm-ocr",
+  "version": "1.0.0",
+  "description": "ArmOcr is a simple web application, that helps to tranform images of typed and printed Armenian text into editable and searchable machine text.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "google-translate-api": "^2.3.0",
+    "http": "^0.0.0",
+    "request": "^2.83.0",
+    "socket.io": "^2.0.3",
+    "socket.io-file": "^2.0.14",
+    "socket.io-file-client": "^2.0.121"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonictik/ArmOcr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sonictik/ArmOcr/issues"
+  },
+  "homepage": "https://github.com/sonictik/ArmOcr#readme"
+}
