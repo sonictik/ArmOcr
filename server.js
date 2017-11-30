@@ -42,7 +42,7 @@ function serv_init() {
                 .then(function(text){
                     socket.emit('receiveText', text);
                 }, function(err){
-                    socket.emit('error', err);
+                    socket.emit('errorMessage', err.message);
                 });
         });
         
@@ -72,7 +72,7 @@ function serv_init() {
                 .then(function(text){
                     socket.emit('receiveText', text);
                 }, function(err){
-                    socket.emit('error', err);
+                    socket.emit('errorMessage', err.message);
                 });
         });
 

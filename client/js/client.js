@@ -17,6 +17,9 @@ Client.prototype.initSocket = function(octApi) {
     this.socket.on("receiveText", function(recognizedText){
         octApi.receivedRecognizedText(recognizedText);
     });
+    this.socket.on("errorMessage", function(msg){
+        alert(msg);
+    });
 };
 
 
