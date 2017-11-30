@@ -36,6 +36,10 @@ View.prototype.getImgURL = function() {
     return document.getElementById("imgUrl").value;
 };
 
+View.prototype.getIsFast = function() {
+    return document.getElementById("isFast").checked;
+};
+
 View.prototype.setImage = function(url) {
     document.getElementById("armImg").src = url;
 };

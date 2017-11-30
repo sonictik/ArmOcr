@@ -9,8 +9,8 @@
     "http": "^0.0.0",
     "request": "^2.83.0",
     "socket.io": "^2.0.3",
-    "socket.io-file": "^2.0.14",
-    "socket.io-file-client": "^2.0.121"
+    "socket.io-file": "^2.0.2",
+    "socket.io-file-client": "^2.0.2"
   },
   "devDependencies": {},
   "scripts": {

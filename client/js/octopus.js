@@ -33,7 +33,9 @@ Octopus.prototype.processURL = function() {
     var url = this.view.getImgURL();
     this.view.setImage(url);
     
-    this.client.requestRecognitionByUrl(url);
+    var isFast = this.view.getIsFast();
+    
+    this.client.requestRecognitionByUrl(url, isFast);
     
     this.clearInfo();
 };
@@ -48,7 +50,9 @@ Octopus.prototype.initFileUpload = function() {
         ev.preventDefault();
         
         var fileEl = document.getElementById('imageFile');
-        client.upload(fileEl);
+        var isFast = view.getIsFast();
+        
+        client.upload(fileEl, isFast);
         
         view.changeSrcLocal();
     };

@@ -38,12 +38,22 @@ Client.prototype.initUploader = function() {
     });
 };
 
-Client.prototype.upload = function(fileElement) {
-    this.uploader.upload(fileElement);
+Client.prototype.upload = function(fileElement, isFast) {
+    var msg = {
+        "isFast": isFast
+    };
+    
+    this.uploader.upload(fileElement, {
+        data: msg
+    });
 };
 
-Client.prototype.requestRecognitionByUrl = function(url) {
-    this.socket.emit("recognizeByUrl", url);
+Client.prototype.requestRecognitionByUrl = function(url, isFast) {
+    var msg = {
+        "url": url,
+        "isFast": isFast
+    };
+    this.socket.emit("recognizeByUrl", msg);
 };
 
 Client.prototype.requestTranslation = function(text, toLang, removeEndlines) {

@@ -38,7 +38,7 @@ function serv_init() {
         uploader.on('complete', (fileInfo) => {
             console.log('Upload Complete.');
             console.log(fileInfo);
-            recognizer.byFilename(fileInfo.name)
+            recognizer.byFilename(fileInfo.name, fileInfo.data.isFast)
                 .then(function(text){
                     socket.emit('receiveText', text);
                 }, function(err){
@@ -67,8 +67,8 @@ function serv_init() {
             });
         });
 
-        socket.on('recognizeByUrl', function(url) {
-            recognizer.byUrl(url)
+        socket.on('recognizeByUrl', function(msg) {
+            recognizer.byUrl(msg.url, msg.isFast)
                 .then(function(text){
                     socket.emit('receiveText', text);
                 }, function(err){
